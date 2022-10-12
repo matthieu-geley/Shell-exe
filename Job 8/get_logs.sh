@@ -1,7 +1,10 @@
-jour=$(date +%d-%m-%Y)
-heure=$(date +%H:%M)
-fichier=number_connection-$jour-$heure.log
-file=$fichier.tar.gz
-sudo grep Accepted /var/log/auth.log >> ./$fichier && tar -czvf ./$fichier.tar.gz ./Backup
+jour=$(date +%d-%m-%Y-%H:%M)
 
-mv "$file" "/home/deb/Bureau/Shell.exe/Job 8/Backup"
+fichier=number_connection-$jour.log
+
+sudo grep Accepted /var/log/auth.log >> ./$fichier
+tar -cvf ./$fichier.tar.gz $fichier
+
+mv $fichier.tar.gz ./Backup
+
+rm $fichier
